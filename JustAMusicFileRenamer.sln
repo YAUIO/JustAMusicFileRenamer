@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAMFR.Logic", "JAMFR.Logic\JAMFR.Logic.csproj", "{74F6E924-6251-4206-B1FE-CAC294601351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAMFR.WinGui", "JAMFR.WinGui\JAMFR.WinGui.csproj", "{F22CAA08-6F1A-42ED-9795-0567DAE579FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74F6E924-6251-4206-B1FE-CAC294601351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F6E924-6251-4206-B1FE-CAC294601351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F6E924-6251-4206-B1FE-CAC294601351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74F6E924-6251-4206-B1FE-CAC294601351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F22CAA08-6F1A-42ED-9795-0567DAE579FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F22CAA08-6F1A-42ED-9795-0567DAE579FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F22CAA08-6F1A-42ED-9795-0567DAE579FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F22CAA08-6F1A-42ED-9795-0567DAE579FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
