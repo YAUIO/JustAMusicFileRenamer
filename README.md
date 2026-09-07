@@ -59,4 +59,4 @@ This tool renames files and folders in place with no undo/dry-run option. Back u
 
 ## License
 
-No license file is currently included in the repo — add one (e.g. MIT) if you want others to use or contribute to the code.
+[MIT](LICENSE)
