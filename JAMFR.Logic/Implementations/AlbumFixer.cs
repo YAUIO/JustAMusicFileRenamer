@@ -6,6 +6,7 @@ public class AlbumFixer : IAlbumFixer
 {
     private readonly IFileRenamer _renamer = new Mp3Renamer();
     private readonly IStringLocalizer _localizer = new StringLocalizer();
+    private readonly IFatModificationSorter _sorter = new FatModificationSorter();
     
     public async Task FixAlbumAsync(DirectoryInfo dir)
     {
@@ -28,5 +29,9 @@ public class AlbumFixer : IAlbumFixer
         Array.Sort(files, (a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
         
         await Task.WhenAll(files.Select(f => _renamer.RenameFileAsync(f, files.IndexOf(f))));
+        
+        Array.Sort(files, (a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
+
+        await _sorter.SortAllAsync(files);
     }
 }
