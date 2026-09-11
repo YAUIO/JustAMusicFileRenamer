@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ID3" Version="0.6.0" />
+      <PackageReference Include="TagLibSharp" Version="2.3.0" />
       <PackageReference Include="UnidecodeSharpFork" Version="1.0.0" />
     </ItemGroup>
 

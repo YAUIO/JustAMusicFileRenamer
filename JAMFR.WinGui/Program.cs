@@ -28,7 +28,10 @@ if (selectedPath is null || !Directory.Exists(selectedPath))
 IAlbumFixer fixer = new AlbumFixer();
 var dir = Directory.CreateDirectory(selectedPath);
 
-var subdirs = dir.GetDirectories();
+var subdirs = dir.GetDirectories()
+    .Where(d => d.GetFiles().Any(f => f.Name.EndsWith(".mp3")))
+    .ToArray();
+
 if (subdirs.Length == 0)
     await fixer.FixAlbumAsync(dir);
 else

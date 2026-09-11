@@ -11,7 +11,6 @@ public class StringLocalizer : IStringLocalizer
             input
             .Unidecode()
             .Trim()
-            .Replace(' ', '-')
             .Replace("\0", string.Empty)
             .Replace("---", "-")
             .Where(c => !_chars.Contains(c)));

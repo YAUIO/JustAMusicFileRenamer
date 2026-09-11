@@ -1,5 +1,7 @@
 ﻿using System.Text;
-using Id3;
+using System.Text.Json;
+using TagLib;
+using File = System.IO.File;
 
 namespace JAMFR.Logic.Implementations;
 
@@ -12,19 +14,11 @@ public class Mp3Renamer : IFileRenamer
         if (!file.Name.EndsWith(".mp3"))
             return Task.FromResult(file.Name);
 
-        Id3Tag? tag;
+        Tag? tag;
         try
         {
-            using var mp3 = new Mp3(file.FullName);
-            tag = mp3.GetTag(Id3TagFamily.Version2X);
-
-            var artistsAssigned = tag?.Artists is { IsAssigned: true };
-            if (!artistsAssigned)
-            {
-                var v1Tag = mp3.GetTag(Id3TagFamily.Version1X);
-                if (v1Tag != null)
-                    tag = v1Tag;
-            }
+            using var mp3 = TagLib.File.Create(file.FullName);
+            tag = mp3.Tag;
         }
         catch (Exception ex)
         {
@@ -32,15 +26,15 @@ public class Mp3Renamer : IFileRenamer
             tag = null;
         }
 
-        var artist = tag != null ? TagTextRepair.FixMojibake(tag.Artists?.ToString()) : null;
-        var track = tag != null ? TagTextRepair.FixMojibake(tag.Title) : null;
+        var artist = tag != null && tag.Performers.Length > 0 ? TagTextRepair.FixMojibake(string.Join(",", tag.Performers)) : null;
+        var track = !string.IsNullOrEmpty(tag?.Title) ? TagTextRepair.FixMojibake(tag.Title) : null;
 
-        var ind = tag?.Track.Value > 0 ? tag.Track.Value : index;
+        var ind = tag?.Track > 0 ? (int)tag.Track : index + 1;
 
-        var formattedIndex = ind >= 9 ? $"{ind + 1}" : $"0{ind + 1}";
-        var nameBuilder = new StringBuilder($"({formattedIndex})");
+        var formattedIndex = ind > 9 ? $"{ind}" : $"0{ind}";
+        var nameBuilder = new StringBuilder($"{formattedIndex}");
 
-        if (artist != null)
+        if (artist != null && (!track?.Contains(" - ") ?? false))
             nameBuilder.Append($"-{artist}");
 
         if (track != null)
