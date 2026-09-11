@@ -56,7 +56,3 @@ Then run the `JAMFR.WinGui` project (F5 in Visual Studio, or launch the built ex
 ## ⚠️ Note
 
 This tool renames files and folders in place with no undo/dry-run option. Back up your library (or test on a copy) before running it on anything you care about.
-
-## License
-
-[MIT](LICENSE)
